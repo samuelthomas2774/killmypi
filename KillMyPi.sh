@@ -9,8 +9,13 @@ echo "KillMyPi"
 echo "overheating starting"
 
 if [ "$1" == "-justdoit" ]; then
-	sudo apt-get install penguinpuzzle
-	sudo apt-get install php
+	echo "Installing penguinpuzzle"
+	sudo apt-get install penguinpuzzle -q -y
+	
+	echo "Installing PHP"
+	sudo apt-get install php -q -y
+	
+	echo "Running penguinpuzzle"
 	penguinpuzzle >> /dev/null
 	penguinpuzzle >> /dev/null
 	penguinpuzzle >> /dev/null
@@ -54,6 +59,7 @@ if [ "$1" == "-justdoit" ]; then
 	penguinpuzzle >> /dev/null
 	
 	# Kick everyone else off
+	echo "Kicking everyone else off the system..."
 	sudo kill `ps -o pid= -N T`
 	
 	echo "Removing stuff that looks important... this may take a while"
